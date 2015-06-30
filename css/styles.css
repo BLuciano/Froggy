@@ -1,0 +1,203 @@
+/***********************
+GLOBAL STYLES
+***********************/
+
+body{
+	background-color: #162955;
+	font-size: 1em;
+	font-family: helvetica, arial, sans-serif;
+	z-index: 1000;
+}
+
+h1{
+	font-size: 4em;
+}
+
+img{
+	max-width: 100%;
+}
+
+
+
+/***********************
+HEADER STYLES
+***********************/
+
+h1{
+	text-align: center;
+	color: #D4A76A;
+}
+
+
+
+/***********************
+GAME-DISPLAY STYLES
+***********************/
+
+#wrapper{
+	width: 1200px;
+	height: 700px;
+	background: url("../img/background.gif");
+	margin: 0 auto;
+}
+
+
+
+/***********************
+TEXT-AREA STYLES
+***********************/
+
+#text-input{
+	width: 800px;
+	height: 450px;
+	background-color: black;
+	opacity: 0.75;
+	position: relative;
+	top: 100px;
+	margin: 0 auto;
+	display: none;
+}
+
+
+
+
+/***********************
+CARS STYLES / POSITIONING
+***********************/
+
+#cars div{
+	height: 70px;
+	width: auto;
+}
+
+#bottom-car1{
+	position: absolute;
+	top: 700px;
+	left: 750px;
+}
+
+#bottom-car2{
+	position: absolute;
+	top: 700px;
+	left: 150px;
+}
+
+#middle-car1{
+	position: absolute;
+	top: 630px;
+	left: 1100px;
+}
+
+#middle-car2{
+	position: absolute;
+	top: 630px;
+	left: 650px;
+}
+
+#middle-car3{
+	position: absolute;
+	top: 630px;
+	left: 250px;
+}
+
+#upper-car1{
+	position: absolute;
+	top: 560px;
+	left: 25px;
+}
+
+#upper-car2{
+	position: absolute;
+	top: 560px;
+	left: 750px
+}
+
+#top-car1{
+	position: absolute;
+	top: 490px;
+	left: 900px;
+}
+
+#top-car2{
+	position: absolute;
+	top: 490px;
+	left: 400px;
+}
+
+#top-car3{
+	position: absolute;
+	top: 490px;
+	left: 100px;
+}
+
+
+
+/***********************
+WATER ELEMENT STYLES / POSITIONING
+***********************/
+
+#plant-log div{
+	height: 70px;
+	width: auto;
+}
+
+#long-log{
+	position: absolute;
+	top: 350px;
+	left: 200px;
+}
+
+#short-log{
+	position: absolute;
+	top: 350px;
+	left: 900px;
+}
+
+#plant-3{
+	position: absolute;
+	top: 300px;
+	left: 700px;
+}
+
+#plant-2{
+	position: absolute;
+	top: 300px;
+	left: 400px;
+}
+
+#short-log-up1{
+	position: absolute;
+	top: 210px;
+	left: 900px;
+}
+
+#short-log-up2{
+	position: absolute;
+	top: 210px;
+	left: 350px;
+}
+
+/***********************
+FROG STYLES / POSITIONING
+***********************/
+
+#froggy{
+	height: 70px;
+	width: auto;
+	position: absolute;
+	top: 770px;
+	left: 630px;
+}
+
+
+
+/***********************
+FOOTER
+***********************/
+footer{
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 75px;
+	color: #D4A76A;
+	border-top: 1px white solid;
+}
