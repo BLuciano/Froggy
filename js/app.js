@@ -14,5 +14,4 @@ $(document).ready(function(){
     var game = new Game(life);
    
     game.playGame();
-
 });

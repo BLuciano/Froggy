@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 function GameBoard(){
 	this.speed = 10;
@@ -14,33 +14,26 @@ function GameBoard(){
 //Sets animation for cars, logs and plants to run continously.
 GameBoard.prototype.animateElements = function(){
 	var index;
-	for(index = 0; index < this.elementsLeft.length; index++){
-		this.loopElements();
-		this.elementsLeft[index].animate(
-			{left: -this.fps + this.elementsLeft[index].position().left + 
-			"px"}, this.speed);
-	} 
-		 console.log("call once");
-	for(index = 0; index < this.elementsRight.length; index++){
-		if(index === this.elementsRight.length - 1){
-			this.elementsRight[index].animate(
-				{left: this.fps + this.elementsRight[index].position().left +
-				 "px"}, this.speed, board.animateElements);
+	var left = this.elementsLeft;
+	var right = this.elementsRight;
+	
+	for(index = 0; index < left.length; index++){
+		if(this.elementsLeft[index].position().left < -200){
+			this.elementsLeft[index].css("left", "1250px");
 		} else {
-			this.elementsRight[index].animate(
-				{left: this.fps + this.elementsRight[index].position().left + 
+			left[index].animate(
+				{left: -this.fps + left[index].position().left + 
 				"px"}, this.speed);
 		}
-	}    console.log("call after");
-} // end of animateElements functions
+	}//end for-loop 
 
-//Check to see if elements reach border of gameplay area. if so make them
-//loop around from the opposite starting point.
-GameBoard.prototype.loopElements = function(){
-	var index;
-	for(index = 0; index < this.elementsRight.length; index++){
-		if(this.elementsRight[index].position().left === 1000){
-			this.elementsRight[index].css("left", "100px");
+	for(index = 0; index < right.length; index++){
+		if(this.elementsRight[index].position().left > 1150){
+			this.elementsRight[index].css("left", "-100px");
+		}else{
+			right[index].animate(
+				{left: this.fps + right[index].position().left + 
+				"px"}, this.speed);
 		}
-	}
-}
+	}//end for-lopp	
+} // end of animateElements functions
