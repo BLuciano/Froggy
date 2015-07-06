@@ -1,11 +1,11 @@
 "use strict";
 $(document).ready(function(){
-	var windowSize = ["1200", "700"];
+	var windowSize = ["1215", "775"];
 	$(window).resize(function(){
     window.resizeTo(windowSize[0],windowSize[1]);
 	});
 
-	if(window.width != "1200" || window.height != "700"){
+	if(window.width != "1215" || window.height != "775"){
 		window.resizeTo(windowSize[0],windowSize[1]);
 	}
 

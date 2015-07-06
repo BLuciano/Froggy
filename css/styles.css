@@ -202,7 +202,8 @@ FROG STYLES / POSITIONING
 	width: auto;
 	position: absolute;
 	top: 610px;
-	left: 550px;
+	left: 560px;
+	z-index: 1000;
 }
 
 
