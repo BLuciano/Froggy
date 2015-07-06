@@ -7,15 +7,15 @@ body{
 	font-size: 1em;
 	font-family: helvetica, arial, sans-serif;
 	z-index: 1000;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
 
 h1{
 	font-size: 4em;
 }
 
-img{
-	max-width: 100%;
-}
 
 
 
@@ -54,7 +54,7 @@ GAME-DISPLAY STYLES
 	width: 1200px;
 	height: 700px;
 	background: url("../img/background.gif");
-	margin: 0 auto;
+
 }
 
 

@@ -18,8 +18,8 @@ GameBoard.prototype.animateElements = function(){
 	var right = this.elementsRight;
 	
 	for(index = 0; index < left.length; index++){
-		if(this.elementsLeft[index].position().left < -200){
-			this.elementsLeft[index].css("left", "1250px");
+		if(left[index].position().left < -200){
+			left[index].css("left", "1250px");
 		} else {
 			left[index].animate(
 				{left: -this.fps + left[index].position().left + 
@@ -28,8 +28,8 @@ GameBoard.prototype.animateElements = function(){
 	}//end for-loop 
 
 	for(index = 0; index < right.length; index++){
-		if(this.elementsRight[index].position().left > 1150){
-			this.elementsRight[index].css("left", "-100px");
+		if(right[index].position().left > 1150){
+			right[index].css("left", "-100px");
 		}else{
 			right[index].animate(
 				{left: this.fps + right[index].position().left + 
