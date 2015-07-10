@@ -37,9 +37,10 @@ header h1{
 
 #play-button{
 	text-align: center;
+	font-size: 1.5em;
 }
 
-#play-button a:active, a:visited{
+#play-button a:link, a:active, a:visited{
 	color: white;
 }
 
@@ -67,11 +68,14 @@ TEXT-AREA STYLES
 	width: 800px;
 	height: 450px;
 	background-color: black;
-	opacity: 0.75;
+	color: white;
+	opacity: 0.80;
 	position: relative;
 	top: 100px;
 	margin: 0 auto;
 	display: none;
+	text-align: center;
+	z-index: 1001;
 }
 
 

@@ -36,4 +36,10 @@ GameBoard.prototype.animateElements = function(){
 				"px"}, this.speed);
 		}
 	}//end for-lopp	
+
+	if(game.lost(left, right)){
+		game.lives--;
+		game.lostScreen();
+	}
+	
 } // end of animateElements functions
