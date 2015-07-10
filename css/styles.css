@@ -29,10 +29,11 @@ header h1{
 }
 
 #poster-img{
-	width: 75%;
-	height: auto;
-	background: url("#") no-repeat cover;
+	max-width: 100%;
+	display: block;
 	margin: 0 auto;
+	margin-bottom: 50px;
+	border: 2px solid white;
 }
 
 #play-button{
