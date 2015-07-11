@@ -29,7 +29,7 @@
 	}
 
 	Game.prototype.won = function(left, top){
-		if(left === 560 && top < 40){
+		if(left === 560 && top < 50){
 			this.level++;
 			return true;
 		} else{ return false;}
@@ -44,17 +44,23 @@
 	//when game is won display current game level and lives.
 	//if level 3 is reached game is won and resets game.
 	Game.prototype.wonScreen = function(){
-		if(this.level === 3){
+		if(this.level === 4){
 			this.level = 1;   //reset level to 1
 			$input.html("<h1>Congratulations!!!</h1>" +
-						"<p>You won the game!</p>");	
+						"<p>You won the game!</p>" +
+						"<p>Press Enter to play again...</p>");	
 			$input.show();
-		
 		} else {
 			$input.html("<p>Level won</p>" +
 						"<p>Current Level: " + this.level + "</p>" +
-						"<p>Lives left: " + this.lives + "</p>");	
+						"<p>Lives left: " + this.lives + "</p>" +
+						"<p>Press Enter to continue...</p>");	
 			$input.show();
+			if(this.level === 2){
+				$("#wrapper").removeClass("level1").addClass("level2");
+			} else if(this.level === 3){
+				$("#wrapper").removeClass("level2").addClass("level3");
+			}
 		}
 	}
 	
