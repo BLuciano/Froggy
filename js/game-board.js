@@ -42,4 +42,4 @@ GameBoard.prototype.animateElements = function(){
 		game.lostScreen();
 	}
 	
-} // end of animateElements functions
+} // end of animateElements function

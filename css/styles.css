@@ -9,7 +9,7 @@ body{
 	z-index: 1000;
 	margin: 0;
 	padding: 0;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 h1{
@@ -55,8 +55,19 @@ GAME-DISPLAY STYLES
 #wrapper{
 	width: 1200px;
 	height: 700px;
-	background: url("../img/background.gif");
+	overflow: hidden;
+}
 
+.level1{
+	background: url("../img/background.gif");
+}
+
+.level2{
+	background: url("../img/level2.gif");
+}
+
+.level3{
+	background: url("../img/level3.gif");
 }
 
 
@@ -77,6 +88,7 @@ TEXT-AREA STYLES
 	display: none;
 	text-align: center;
 	z-index: 1001;
+	overflow: hidden;
 }
 
 

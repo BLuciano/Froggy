@@ -1,49 +1,56 @@
 
 //Controls for the frog's movements. Also checks the boundaries
 //to avoid moving out of the viewport and if the user lost or won.
+
 $(document).keydown(function(e){
 	var $froggy = $("#froggy");
 	var $frogImg = $("#froggy img");
 
-	switch(e.keyCode){
-		case 37:
-			$frogImg.attr('src', "img/frogleft.gif");
-			if($froggy.position().left < 1){
-			} else {
+	//Check to see if game is running (not on text display mode)
+	if(game.playing){
+		switch(e.keyCode){
+			case 37:
+				$frogImg.attr('src', "img/frogleft.gif");
+				if($froggy.position().left < 1){
+				} else {
+					$froggy.animate(
+						{left: -40 + $froggy.position().left + "px"}, 10);
+				}
+				break;
+
+			case 38:
+				$frogImg.attr('src', "img/frogback.gif");
+				if(game.won($froggy.position().left, $froggy.position().top)){
+					$froggy.css("top", "0px");
+					$frogImg.attr('src', "img/frogfront.gif");
+					game.wonScreen();
+				} 
+				else if($froggy.position().top < 51 && 
+					($froggy.position().left < 550 ||
+					$froggy.position().left > 570)) {
+				} else {
+					$froggy.animate(
+						{top: -70 + $froggy.position().top + "px"}, 10);
+				}
+				break;
+
+			case 39:
+				$frogImg.attr('src', "img/frogright.gif");
+				if($froggy.position().left > 1080){
+				} else {
 				$froggy.animate(
-					{left: -40 + $froggy.position().left + "px"}, 10);
-			}
-			break;
+					{left: 40 + $froggy.position().left + "px"}, 10);
+				}
+				break;
 
-		case 38:
-			$frogImg.attr('src', "img/frogback.gif");
-			if($froggy.position().top < 1){
-			} else {
+			case 40:
+				$frogImg.attr('src', "img/frogfront.gif");
+				if($froggy.position().top > 575){
+				} else {
 				$froggy.animate(
-					{top: -70 + $froggy.position().top + "px"}, 10);
-			}
-			break;
-
-		case 39:
-			$frogImg.attr('src', "img/frogright.gif");
-			if($froggy.position().left > 1080){
-			} else {
-			$froggy.animate(
-				{left: 40 + $froggy.position().left + "px"}, 10);
-			}
-			break;
-
-		case 40:
-			$frogImg.attr('src', "img/frogfront.gif");
-			if($froggy.position().top > 575){
-			} else {
-			$froggy.animate(
-				{top: 70 + $froggy.position().top + "px"}, 10);
-			}
-			break;
-	}
-	
-	if(game.won($froggy.position().left, $froggy.position().top)){
-		game.wonScreen();
-	}
-});
+					{top: 70 + $froggy.position().top + "px"}, 10);
+				}
+				break;
+		} //end of switch cases
+	} //end of if statement 
+}); //end keydown handler
