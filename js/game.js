@@ -18,6 +18,9 @@ function Game(lives){
 	this.level = 1;
     this.lives = lives;
     this.playing = true;   //Allows for user controllers to be on/off
+    this.cars = [$("#bottom-car1"), $("#bottom-car2"), $("#middle-car1"), 
+    			$("#middle-car2"), $("#middle-car3"),  $("#upper-car1"), 
+				$("#upper-car2"), $("#top-car1"), $("#top-car2"), $("#top-car3")];
 }
 
 //Sets the view of the game
@@ -28,8 +31,15 @@ Game.prototype.playGame = function(){
 } 
 
 //Checks to see if user lost to a car or water
-Game.prototype.lost = function(){
+Game.prototype.lost = function(car){
+	var left = car.position().left;
+	var top = car.position().top;
 	
+	if(($("#froggy").position().left > left - 30 && 
+		$("#froggy").position().left < left + 30) &&
+		$("#froggy").position().top === top){
+			return true;
+		} else{ return false;}
 }
 
 //Checks to see if user made it to the winning spot.
@@ -43,8 +53,40 @@ Game.prototype.won = function(left, top){
 //When game is lost or won display current game level and lives.
 //if level 3 is reached or all lives ran out game is reseted.
 Game.prototype.lostScreen = function(){
+	game.lives--;
+	this.playing = false;
 
-}
+	//reload game once the game is lost if user wants.
+	if(this.lives === 0){
+		$input.html("<h1>GAME OVER</h1>" +
+					"<p>Press Enter to play again...</p>");	
+		$input.show();
+
+		$(document).keydown(function(e) {
+			if(e.keyCode === 13) {
+				location.reload();
+			}
+		});//end of keydown
+	}	
+	//Else continue game, place frog back at starting area.
+	else {
+		$input.html("<p>You lost!</p>" +
+					"<p>Current Level: " + this.level + "</p>" +
+					"<p>Lives left: " + this.lives + "</p>" +
+					"<p>Press Enter to continue...</p>");	
+		$input.show();
+			
+		$(document).keydown(function(e) {
+			if(e.keyCode === 13) {
+				game.playing = true;
+				$input.hide();
+				$("#froggy").css("top", "610px");
+				$("#froggy").css("left", "560px");
+				$("#froggy Img").attr('src', "img/frogback.gif");				
+			}
+		}); //end of keydown
+	} //end if-else statement
+}//End of lostScreen method
 
 //when game is won display current game level and lives.
 //if level 3 is reached game is won and resets game.
