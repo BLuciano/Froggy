@@ -13,33 +13,35 @@ function GameBoard(){
 
 //Sets animation for cars, logs and plants to run continously.
 GameBoard.prototype.animateElements = function(){
-	var index;
-	var left = this.elementsLeft;
-	var right = this.elementsRight;
-	
-	for(index = 0; index < left.length; index++){
-		if(left[index].position().left < -200){
-			left[index].css("left", "1250px");
-		} else {
-			left[index].animate(
-				{left: -this.fps + left[index].position().left + 
-				"px"}, this.speed);
-		}
-	}//end for-loop 
+	var index; var left; var top;
+	if(game.playing){
+		for(index = 0; index < this.elementsLeft.length; index++){
+			left = this.elementsLeft[index].position().left;
+			top = this.elementsLeft[index].position().top;
 
-	for(index = 0; index < right.length; index++){
-		if(right[index].position().left > 1150){
-			right[index].css("left", "-100px");
-		}else{
-			right[index].animate(
-				{left: this.fps + right[index].position().left + 
-				"px"}, this.speed);
-		}
-	}//end for-lopp	
+			if(left < -200){
+				this.elementsLeft[index].css("left", "1250px");
+			} else {
+				this.elementsLeft[index].animate(
+					{left: -this.fps + left + "px"}, this.speed);
+			}
+			if(game.lost(this.elementsLeft[index])){
+				game.lostScreen();
+			}
+		}//end for-loop 
 
-	if(game.lost(left, right)){
-		game.lives--;
-		game.lostScreen();
-	}
-	
+		for(index = 0; index < this.elementsRight.length; index++){
+			left = this.elementsRight[index].position().left;
+			top = this.elementsRight[index].position().top;
+			if(left > 1150){
+				this.elementsRight[index].css("left", "-100px");
+			}else{
+				this.elementsRight[index].animate(
+					{left: this.fps + left + "px"}, this.speed);
+			}
+			if(game.lost(this.elementsRight[index])){
+				game.lostScreen();
+			}
+		}//end for-lopp		
+	}//end if statement
 } // end of animateElements function
