@@ -174,22 +174,28 @@ WATER ELEMENT STYLES / POSITIONING
 	width: auto;
 }
 
-#long-log{
+#bottom-log1{
 	position: absolute;
 	top: 190px;
 	left: 200px;
 }
 
-#short-log{
+#bottom-log2{
 	position: absolute;
 	top: 190px;
-	left: 900px;
+	left: 600px;
 }
 
-#plant-3{
+#bottom-log3{
+	position: absolute;
+	top: 190px;
+	left: 1000px;
+}
+
+#plant-1{
 	position: absolute;
 	top: 140px;
-	left: 700px;
+	left: 0px;
 }
 
 #plant-2{
@@ -198,16 +204,22 @@ WATER ELEMENT STYLES / POSITIONING
 	left: 400px;
 }
 
+#plant-3{
+	position: absolute;
+	top: 140px;
+	left: 800px;
+}
+
 #top-log1{
 	position: absolute;
 	top: 50px;
-	left: 900px;
+	left: 300px;
 }
 
 #top-log2{
 	position: absolute;
 	top: 50px;
-	left: 350px;
+	left: 700px;
 }
 
 /***********************
