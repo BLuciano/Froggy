@@ -4,11 +4,11 @@ function GameBoard(){
 	this.speed = 10;
 	this.fps = 40;
 	this.elementsRight = [$("#bottom-car1"), $("#bottom-car2"), $("#upper-car1"), 
-					$("#upper-car2"),  $("#long-log"), $("#short-log"), 
-					$("#top-log1"), $("#top-log2")];
+					$("#upper-car2"),  $("#bottom-log1"), $("#bottom-log2"), 
+					$("#bottom-log3"), $("#top-log1"), $("#top-log2")];
 	this.elementsLeft = [$("#middle-car1"), $("#middle-car2"), $("#middle-car3"), 
-					$("#top-car1"), $("#top-car2"), $("#top-car3"), $("#plant-3"),
-					$("#plant-2")];
+					$("#top-car1"), $("#top-car2"), $("#top-car3"), $("#plant1"),
+					$("#plant2"), $("#plant3")];
 }
 
 //Sets animation for cars, logs and plants to run continously.
@@ -25,7 +25,7 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsLeft[index].animate(
 					{left: -this.fps + left + "px"}, this.speed);
 			}
-			if(game.lost(this.elementsLeft[index])){
+			if(game.lostToCar(this.elementsLeft[index])){
 				game.lostScreen();
 			}
 		}//end for-loop 
@@ -39,7 +39,7 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsRight[index].animate(
 					{left: this.fps + left + "px"}, this.speed);
 			}
-			if(game.lost(this.elementsRight[index])){
+			if(game.lostToCar(this.elementsRight[index])){
 				game.lostScreen();
 			}
 		}//end for-lopp		

@@ -22,6 +22,7 @@ $(document).keydown(function(e){
 				$frogImg.attr('src', "img/frogback.gif");
 				if(game.won($froggy.position().left, $froggy.position().top)){
 					$froggy.css("top", "0px");
+					$froggy.css("left", "560px");
 					$frogImg.attr('src', "img/frogfront.gif");
 					game.wonScreen();
 				} 

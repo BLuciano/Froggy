@@ -192,19 +192,19 @@ WATER ELEMENT STYLES / POSITIONING
 	left: 1000px;
 }
 
-#plant-1{
+#plant1{
 	position: absolute;
 	top: 140px;
 	left: 0px;
 }
 
-#plant-2{
+#plant2{
 	position: absolute;
 	top: 140px;
 	left: 400px;
 }
 
-#plant-3{
+#plant3{
 	position: absolute;
 	top: 140px;
 	left: 800px;

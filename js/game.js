@@ -18,29 +18,67 @@ function Game(lives){
 	this.level = 1;
     this.lives = lives;
     this.playing = true;   //Allows for user controllers to be on/off
-    this.cars = [$("#bottom-car1"), $("#bottom-car2"), $("#middle-car1"), 
-    			$("#middle-car2"), $("#middle-car3"),  $("#upper-car1"), 
-				$("#upper-car2"), $("#top-car1"), $("#top-car2"), $("#top-car3")];
+    this.bottomLogs = [$("#bottom-log1"), $("#bottom-log2"), $("#bottom-log3")];
+   	this.topLogs = [$("#top-log1"), $("#top-log2")];
+    this.plants = [$("#plant1"), $("#plant2"), $("#plant3")];
 }
 
-//Sets the view of the game
-Game.prototype.playGame = function(){
-   	var board = new GameBoard();
-  	setInterval(function(){
-   		board.animateElements()}, 100); 
-} 
+//Checks to see if the user is on top of a plant or log.
+Game.prototype.inRange = function(frog, elem){
+	if(frog > elem - 50 && frog < elem + 100){
+		return true;
+	} else {
+		return false;
+	}
+}// end inRange method
 
 //Checks to see if user lost to a car or water
-Game.prototype.lost = function(car){
-	var left = car.position().left;
-	var top = car.position().top;
+Game.prototype.lostToCar = function(elem){
+	var left = elem.position().left;
+	var top = elem.position().top;
+	var frogL = $("#froggy").position().left;
+	var frogT = $("#froggy").position().top;
+	var item = elem.attr('id');
 	
-	if(($("#froggy").position().left > left - 30 && 
+	if(frogT === 190 && (item==="bottom-log1" || 
+	item==="bottom-log2" || item==="bottom-log3")){
+		if(this.inRange(frogL, left)){
+			$("#froggy").animate(
+				{left: 40 + frogL + "px"}, 10);
+			if(frogL > 1150){   //out of bounds
+				return true;
+			} 
+		}
+	}
+	else if(frogT === 120 &&(item==="plant1" || 
+	item==="plant2" || item==="plant3")){
+		if(this.inRange(frogL, left + 30)){
+			$("#froggy").animate(
+				{left: -40 + frogL + "px"}, 10);
+			if(frogL < -25){   //out of bounds
+				return true;
+			}
+		}
+	}
+	else if(frogT === 50 &&(item==="top-log1" || 
+	item==="top-log2")){
+		if(this.inRange(frogL, left)){
+			$("#froggy").animate(
+				{left: 40 + frogL + "px"}, 10);
+			if(frogL > 1150){   //out of bounds
+				return true;
+			}
+		}
+	}else {
+		if(($("#froggy").position().left > left - 30 && 
 		$("#froggy").position().left < left + 30) &&
 		$("#froggy").position().top === top){
 			return true;
-		} else{ return false;}
-}
+		} else{ 
+			return false;
+		}
+	}
+} //end of lost method
 
 //Checks to see if user made it to the winning spot.
 Game.prototype.won = function(left, top){
@@ -82,7 +120,7 @@ Game.prototype.lostScreen = function(){
 				$input.hide();
 				$("#froggy").css("top", "610px");
 				$("#froggy").css("left", "560px");
-				$("#froggy Img").attr('src', "img/frogback.gif");				
+				$("#froggy Img").attr('src', "img/frogback.gif");			
 			}
 		}); //end of keydown
 	} //end if-else statement
@@ -112,7 +150,8 @@ Game.prototype.wonScreen = function(){
 					"<p>Lives left: " + this.lives + "</p>" +
 					"<p>Press Enter to continue...</p>");	
 		$input.show();
-			
+		
+		//change background image according to level	
 		if(this.level === 2){
 			$("#wrapper").removeClass("level1").addClass("level2");
 		} else if(this.level === 3){
@@ -125,11 +164,18 @@ Game.prototype.wonScreen = function(){
 				$input.hide();
 				$("#froggy").css("top", "610px");
 				$("#froggy").css("left", "560px");
-				$("#froggy Img").attr('src', "img/frogback.gif");				
+				$("#froggy Img").attr('src', "img/frogback.gif");			
 			}
 		}); //end of keydown
 	} //end if-else statement
 }//end of wonScreen method
+
+//Sets the view of the game
+Game.prototype.playGame = function(){
+   	var board = new GameBoard();
+  	setInterval(function(){
+   		board.animateElements()}, 100); 
+} 
 	
 game.playGame();
 
