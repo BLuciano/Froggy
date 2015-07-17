@@ -1,14 +1,5 @@
 "use strict";
 
-//set the new window's size to be fixed (not resizeable by user).
-var windowSize = ["1215", "775"];
-$(window).resize(function(){
-   window.resizeTo(windowSize[0],windowSize[1]);
-});
-if(window.width != "1215" || window.height != "775"){
-	window.resizeTo(windowSize[0],windowSize[1]);
-}
-
 var $input = $("#text-input");
 var $frogPos = $("#froggy").position();
 var life = 3; 
@@ -18,9 +9,6 @@ function Game(lives){
 	this.level = 1;
     this.lives = lives;
     this.playing = true;   //Allows for user controllers to be on/off
-    this.bottomLogs = [$("#bottom-log1"), $("#bottom-log2"), $("#bottom-log3")];
-   	this.topLogs = [$("#top-log1"), $("#top-log2")];
-    this.plants = [$("#plant1"), $("#plant2"), $("#plant3")];
 }
 
 //Checks to see if the user is on top of a plant or log.
@@ -33,7 +21,7 @@ Game.prototype.inRange = function(frog, elem){
 }// end inRange method
 
 //Checks to see if user lost to a car or water
-Game.prototype.lostToCar = function(elem){
+Game.prototype.lost = function(elem){
 	var left = elem.position().left;
 	var top = elem.position().top;
 	var frogL = $("#froggy").position().left;
@@ -41,38 +29,34 @@ Game.prototype.lostToCar = function(elem){
 	var item = elem.attr('id');
 	
 	if(frogT === 190 && (item==="bottom-log1" || 
-	item==="bottom-log2" || item==="bottom-log3")){
-		if(this.inRange(frogL, left)){
-			$("#froggy").animate(
-				{left: 40 + frogL + "px"}, 10);
-			if(frogL > 1150){   //out of bounds
-				return true;
-			} 
-		}
+	item==="bottom-log2" || item==="bottom-log3") &&
+	this.inRange(frogL, left)){
+		$("#froggy").animate(
+			{left: 40 + frogL + "px"}, 10);
+		if(frogL > 1150){   //out of bounds
+			return true;
+		} 
 	}
 	else if(frogT === 120 &&(item==="plant1" || 
-	item==="plant2" || item==="plant3")){
-		if(this.inRange(frogL, left + 30)){
-			$("#froggy").animate(
-				{left: -40 + frogL + "px"}, 10);
-			if(frogL < -25){   //out of bounds
-				return true;
-			}
+	item==="plant2" || item==="plant3") &&
+	this.inRange(frogL, left + 30)){
+		$("#froggy").animate(
+			{left: -40 + frogL + "px"}, 10);
+		if(frogL < -25){   //out of bounds
+			return true;
 		}
 	}
 	else if(frogT === 50 &&(item==="top-log1" || 
-	item==="top-log2")){
-		if(this.inRange(frogL, left)){
-			$("#froggy").animate(
-				{left: 40 + frogL + "px"}, 10);
-			if(frogL > 1150){   //out of bounds
-				return true;
-			}
+	item==="top-log2") && this.inRange(frogL, left)){
+		$("#froggy").animate(
+			{left: 40 + frogL + "px"}, 10);
+		if(frogL > 1150){   //out of bounds
+			return true;
 		}
-	}else {
-		if(($("#froggy").position().left > left - 30 && 
-		$("#froggy").position().left < left + 30) &&
-		$("#froggy").position().top === top){
+	}
+	
+	else {
+		if((frogL > left - 30 && frogL < left + 30) && frogT === top){
 			return true;
 		} else{ 
 			return false;

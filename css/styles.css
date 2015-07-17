@@ -9,6 +9,9 @@ body{
 	z-index: 1000;
 	margin: 0;
 	padding: 0;
+}
+
+#game-body{
 	overflow: hidden;
 }
 
@@ -90,7 +93,6 @@ TEXT-AREA STYLES
 	z-index: 1001;
 	overflow: hidden;
 }
-
 
 
 

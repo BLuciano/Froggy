@@ -1,5 +1,14 @@
 "use strict";
 
+//set the new window's size to be fixed (not resizeable by user).
+var windowSize = ["1215", "775"];
+$(window).resize(function(){
+   window.resizeTo(windowSize[0],windowSize[1]);
+});
+if(window.width != "1215" || window.height != "775"){
+	window.resizeTo(windowSize[0],windowSize[1]);
+}
+
 function GameBoard(){
 	this.speed = 10;
 	this.fps = 40;
@@ -25,7 +34,7 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsLeft[index].animate(
 					{left: -this.fps + left + "px"}, this.speed);
 			}
-			if(game.lostToCar(this.elementsLeft[index])){
+			if(game.lost(this.elementsLeft[index])){
 				game.lostScreen();
 			}
 		}//end for-loop 
@@ -39,7 +48,7 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsRight[index].animate(
 					{left: this.fps + left + "px"}, this.speed);
 			}
-			if(game.lostToCar(this.elementsRight[index])){
+			if(game.lost(this.elementsRight[index])){
 				game.lostScreen();
 			}
 		}//end for-lopp		
