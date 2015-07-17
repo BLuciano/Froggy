@@ -1,14 +1,23 @@
 "use strict";
 
+//set the new window's size to be fixed (not resizeable by user).
+var windowSize = ["1215", "775"];
+$(window).resize(function(){
+   window.resizeTo(windowSize[0],windowSize[1]);
+});
+if(window.width != "1215" || window.height != "775"){
+	window.resizeTo(windowSize[0],windowSize[1]);
+}
+
 function GameBoard(){
 	this.speed = 10;
 	this.fps = 40;
 	this.elementsRight = [$("#bottom-car1"), $("#bottom-car2"), $("#upper-car1"), 
-					$("#upper-car2"),  $("#long-log"), $("#short-log"), 
-					$("#top-log1"), $("#top-log2")];
+					$("#upper-car2"),  $("#bottom-log1"), $("#bottom-log2"), 
+					$("#bottom-log3"), $("#top-log1"), $("#top-log2")];
 	this.elementsLeft = [$("#middle-car1"), $("#middle-car2"), $("#middle-car3"), 
-					$("#top-car1"), $("#top-car2"), $("#top-car3"), $("#plant-3"),
-					$("#plant-2")];
+					$("#top-car1"), $("#top-car2"), $("#top-car3"), $("#plant1"),
+					$("#plant2"), $("#plant3")];
 }
 
 //Sets animation for cars, logs and plants to run continously.

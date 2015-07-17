@@ -9,6 +9,9 @@ body{
 	z-index: 1000;
 	margin: 0;
 	padding: 0;
+}
+
+#game-body{
 	overflow: hidden;
 }
 
@@ -45,6 +48,14 @@ header h1{
 	color: white;
 }
 
+#play-button p {
+	color: yellow;
+}
+
+.disabled{
+	pointer-events: none;
+	opacity: .5;
+}
 
 
 
@@ -90,7 +101,6 @@ TEXT-AREA STYLES
 	z-index: 1001;
 	overflow: hidden;
 }
-
 
 
 
@@ -174,40 +184,52 @@ WATER ELEMENT STYLES / POSITIONING
 	width: auto;
 }
 
-#long-log{
+#bottom-log1{
 	position: absolute;
 	top: 190px;
 	left: 200px;
 }
 
-#short-log{
+#bottom-log2{
 	position: absolute;
 	top: 190px;
-	left: 900px;
+	left: 600px;
 }
 
-#plant-3{
+#bottom-log3{
+	position: absolute;
+	top: 190px;
+	left: 1000px;
+}
+
+#plant1{
 	position: absolute;
 	top: 140px;
-	left: 700px;
+	left: 0px;
 }
 
-#plant-2{
+#plant2{
 	position: absolute;
 	top: 140px;
 	left: 400px;
 }
 
+#plant3{
+	position: absolute;
+	top: 140px;
+	left: 800px;
+}
+
 #top-log1{
 	position: absolute;
 	top: 50px;
-	left: 900px;
+	left: 300px;
 }
 
 #top-log2{
 	position: absolute;
 	top: 50px;
-	left: 350px;
+	left: 700px;
 }
 
 /***********************
