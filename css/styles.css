@@ -48,6 +48,14 @@ header h1{
 	color: white;
 }
 
+#play-button p {
+	color: yellow;
+}
+
+.disabled{
+	pointer-events: none;
+	opacity: .5;
+}
 
 
 
