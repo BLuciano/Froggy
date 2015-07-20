@@ -1,7 +1,6 @@
 
 //Controls for the frog's movements. Also checks the boundaries
 //to avoid moving out of the viewport and if the user lost or won.
-
 $(document).keydown(function(e){
 	var $froggy = $("#froggy");
 	var $frogImg = $("#froggy img");

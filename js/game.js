@@ -9,59 +9,99 @@ function Game(lives){
 	this.level = 1;
     this.lives = lives;
     this.playing = true;   //Allows for user controllers to be on/off
+   	this.elems = [$("#bottom-car1"), $("#bottom-car2"), $("#middle-car1"), 
+   					$("#middle-car2"), $("#middle-car3"), $("#upper-car1"), 
+					$("#upper-car2"), $("#top-car1"), $("#top-car2"), 
+					$("#top-car3"), $("#bottom-log1"), $("#bottom-log2"), 
+					$("#bottom-log3"), $("#plant1"), $("#plant2"), 
+					$("#plant3"), $("#top-log1"), $("#top-log2")];
 }
 
 //Checks to see if the user is on top of a plant or log.
 Game.prototype.inRange = function(frog, elem){
-	if(frog > elem - 50 && frog < elem + 100){
-		return true;
-	} else {
-		return false;
-	}
-}// end inRange method
+	if(frog > elem - 70 && frog < elem + 100){ return true;} 
+	else { return false;}
+}
 
-//Checks to see if user lost to a car or water
-Game.prototype.lost = function(elem){
-	var left = elem.position().left;
-	var top = elem.position().top;
-	var frogL = $("#froggy").position().left;
-	var frogT = $("#froggy").position().top;
-	var item = elem.attr('id');
+//Animate frog right when on top of logs
+Game.prototype.animateRight = function(pos){
+	$("#froggy").animate(
+		{left: 35 + pos + "px"}, 10);
+}
+
+//Animate frog left when on top of plants
+Game.prototype.animateLeft = function(pos){
+	$("#froggy").animate(
+		{left: -35 + pos + "px"}, 10);
+}
+
+//Checks to see if user lost to a car or water 
+Game.prototype.lost = function(){ 
+	var left, top, frogL, frogT, item, index; 
+	var length = this.elems.length;
 	
-	if(frogT === 190 && (item==="bottom-log1" || 
-	item==="bottom-log2" || item==="bottom-log3") &&
-	this.inRange(frogL, left)){
-		$("#froggy").animate(
-			{left: 40 + frogL + "px"}, 10);
-		if(frogL > 1150){   //out of bounds
-			return true;
-		} 
-	}
-	else if(frogT === 120 &&(item==="plant1" || 
-	item==="plant2" || item==="plant3") &&
-	this.inRange(frogL, left + 30)){
-		$("#froggy").animate(
-			{left: -40 + frogL + "px"}, 10);
-		if(frogL < -25){   //out of bounds
-			return true;
+	loop: for(index = 0; index < length; index++){
+		console.log(index);
+		left = this.elems[index].position().left;
+		top = this.elems[index].position().top;
+		frogL = $("#froggy").position().left;
+		frogT = $("#froggy").position().top;
+		item = this.elems[index].attr('id');
+
+		//checks to see if user is standing in a plant/log else it loses to water.
+		if(item==="bottom-log1" || item==="bottom-log2" || 
+		item==="bottom-log3" || item==="plant1" || item==="plant2" 
+		|| item==="plant3" || item==="top-log1" || item==="top-log2"){
+			if(frogT === 190 && this.inRange(frogL, $("#bottom-log1").position().left)){
+				this.animateRight(frogL);
+				if(frogL > 1150){return true;}
+				break loop;
+			}
+			else if(frogT === 190 && this.inRange(frogL, $("#bottom-log2").position().left)){
+				this.animateRight(frogL);
+				if(frogL > 1150){return true;}
+				break loop;
+			}
+			else if(frogT === 190 && this.inRange(frogL, $("#bottom-log3").position().left)){
+				this.animateRight(frogL);
+				if(frogL > 1150){return true;}
+				break loop;
+			}	
+			else if(frogT === 120 && this.inRange(frogL, $("#plant1").position().left)){
+				this.animateLeft(frogL);
+				if(frogL < -25){return true;}
+				break loop;
+			}
+			else if(frogT === 120 && this.inRange(frogL, $("#plant2").position().left)){
+				this.animateLeft(frogL);
+				if(frogL < -25){return true;}
+				break loop;
+			}
+			else if(frogT === 120 && this.inRange(frogL, $("#plant3").position().left)){
+				this.animateLeft(frogL);
+				if(frogL < -25){return true;}
+				break loop;
+			}
+			else if(frogT === 50 && this.inRange(frogL, $("#top-log1").position().left)){
+				this.animateRight(frogL);
+				if(frogL > 1150){return true;}
+				break loop;
+			}
+			else if(frogT === 50 && this.inRange(frogL, $("#top-log2").position().left)){
+				this.animateRight(frogL);
+				if(frogL > 1150){return true;}
+				break loop;
+			}
+			else if(frogT === 50 || frogT === 120 || frogT === 190){ 
+				return true;
+			}	
+		//else it will check for user collision with cars.
+		} else {
+			if((frogL > left - 30 && frogL < left + 30) && frogT === top){ 
+				return true;
+			} 
 		}
-	}
-	else if(frogT === 50 &&(item==="top-log1" || 
-	item==="top-log2") && this.inRange(frogL, left)){
-		$("#froggy").animate(
-			{left: 40 + frogL + "px"}, 10);
-		if(frogL > 1150){   //out of bounds
-			return true;
-		}
-	}
-	
-	else {
-		if((frogL > left - 30 && frogL < left + 30) && frogT === top){
-			return true;
-		} else{ 
-			return false;
-		}
-	}
+	}//end of for-loop
 } //end of lost method
 
 //Checks to see if user made it to the winning spot.
