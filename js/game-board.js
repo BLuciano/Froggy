@@ -11,7 +11,7 @@ if(window.width != "1215" || window.height != "775"){
 
 function GameBoard(){
 	this.speed = 10;
-	this.fps = 40;
+	this.fps = 35;
 	this.elementsRight = [$("#bottom-car1"), $("#bottom-car2"), $("#upper-car1"), 
 					$("#upper-car2"),  $("#bottom-log1"), $("#bottom-log2"), 
 					$("#bottom-log3"), $("#top-log1"), $("#top-log2")];
@@ -34,9 +34,6 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsLeft[index].animate(
 					{left: -this.fps + left + "px"}, this.speed);
 			}
-			if(game.lost(this.elementsLeft[index])){
-				game.lostScreen();
-			}
 		}//end for-loop 
 
 		for(index = 0; index < this.elementsRight.length; index++){
@@ -48,9 +45,10 @@ GameBoard.prototype.animateElements = function(){
 				this.elementsRight[index].animate(
 					{left: this.fps + left + "px"}, this.speed);
 			}
-			if(game.lost(this.elementsRight[index])){
-				game.lostScreen();
-			}
-		}//end for-lopp		
+		}//end for-lopp
+
+		if(game.lost()){
+			game.lostScreen();
+		}		
 	}//end if statement
 } // end of animateElements function
